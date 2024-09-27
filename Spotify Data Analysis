@@ -77,3 +77,31 @@ GROUP BY artist_name
 ORDER BY track_count DESC
 LIMIT 1;
 
+#What's the average duration of tracks for each artist?
+SELECT 
+    artist_name,
+    AVG(duration_ms) as avg_duration_ms,
+    AVG(duration_ms / 1000.0 / 60.0) as avg_duration_minutes
+FROM BIT_DB.Spotifydata
+GROUP BY artist_name
+ORDER BY avg_duration_ms DESC;
+
+#How does instrumentalness relate to popularity?
+SELECT 
+    instrumentalness,
+    AVG(popularity) as avg_popularity,
+    COUNT(*) as track_count
+FROM BIT_DB.Spotifydata
+GROUP BY instrumentalness
+ORDER BY instrumentalness;
+
+#Which track has the highest speechiness?
+SELECT track_name, speechiness, artist_name
+FROM BIT_DB.Spotifydata
+GROUP BY track_name
+ORDER BY speechiness desc
+LIMIT 1;
+
+
+
+
